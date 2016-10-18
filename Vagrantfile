@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "bento/centos-7.2"
+  config.vm.box = "centos/7"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
     sudo -S -u vagrant -i /bin/bash -l -c 'git clone git://github.com/sstephenson/ruby-build.git /home/vagrant/.rbenv/plugins/ruby-build'
 
     echo 'export PATH="/home/vagrant/.rbenv/bin:/home/vagrant/.rbenv/plugins/ruby-build/bin:$PATH"' >> /home/vagrant/.bash_profile
-    echo 'export MAKEFLAGS="-j 2"' >> /home/vagrant/.bash_profile
+    echo 'export MAKEFLAGS="-j $(nproc --all)"' >> /home/vagrant/.bash_profile
     echo 'eval "$(rbenv init -)"' >> /home/vagrant/.bash_profile
 
     sudo -S -u vagrant -i /bin/bash -l -c '/home/vagrant/.rbenv/bin/rbenv install -v 2.3.1'
