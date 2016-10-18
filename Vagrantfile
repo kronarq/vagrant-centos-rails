@@ -89,6 +89,6 @@ Vagrant.configure("2") do |config|
 
     echo; echo "-----------------------"; echo "WARNING!"; echo "This is inherently insecure only run behind a firewall."; echo "Do not open to the internet!"; echo "-----------------------"; echo;
 
-    echo; echo "-----------------------"; echo "Connect to server at:"; ifconfig | grep "inet " | grep -v "10.0.2.15" | grep -v 127.0.0.1" | awk '{print $2 ":3000"}'; echo "-----------------------"; echo;
+    echo; echo "-----------------------"; echo "Connect to server at:"; ifconfig | grep "inet " | grep -v "10.0.2.15" | grep -v "127.0.0.1" | awk '{print "http://" $2 ":3000"}'; echo "-----------------------"; echo;
   SHELL
 end
