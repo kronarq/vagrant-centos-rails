@@ -4,8 +4,9 @@ Vagrantfile to spin up a rails environment and sample Devise/Bootcamp app from R
 
 
 # Usage
-    git clone --recursive -j8 git@github.com:kronarq/vagrant-centos-rails.git
+    git clone --recursive git@github.com:kronarq/vagrant-centos-rails.git
     cd vagrant-centos-rails/
+    vagrant plugin install vagrant-vbguest
     vagrant up
 
 # Other
