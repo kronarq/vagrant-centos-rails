@@ -1,0 +1,3 @@
+[submodule "rails/rails-devise"]
+	path = rails/rails-devise
+	url = https://github.com/kronarq/rails-devise.git
