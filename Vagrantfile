@@ -42,6 +42,7 @@ Vagrant.configure("2") do |config|
     sudo -S -u vagrant -i /bin/bash -l -c 'git clone git://github.com/sstephenson/ruby-build.git /home/vagrant/.rbenv/plugins/ruby-build'
 
     echo 'export PATH="/home/vagrant/.rbenv/bin:/home/vagrant/.rbenv/plugins/ruby-build/bin:$PATH"' >> /home/vagrant/.bash_profile
+    echo 'export MAKEFLAGS="-j 2"' >> /home/vagrant/.bash_profile
     echo 'eval "$(rbenv init -)"' >> /home/vagrant/.bash_profile
 
     sudo -S -u vagrant -i /bin/bash -l -c '/home/vagrant/.rbenv/bin/rbenv install -v 2.3.1'
@@ -50,8 +51,9 @@ Vagrant.configure("2") do |config|
     sudo -S -u vagrant -i /bin/bash -l -c 'echo "gem: --no-document" > /home/vagrant/.gemrc'
     sudo -S -u vagrant -i /bin/bash -l -c 'gem install bundler'
     sudo -S -u vagrant -i /bin/bash -l -c 'gem install rails'
+    sudo -S -u vagrant -i /bin/bash -l -c '/home/vagrant/.rbenv/bin/rbenv rehash'
 
-    sudo -S -u vagrant -i /bin/bash -l -c 'cd /vagrant/rails/rails-devise/; bundle update'
+    sudo -S -u vagrant -i /bin/bash -l -c 'export MAKEFLAGS="-j 2"; cd /vagrant/rails/rails-devise/; bundle update'
     sudo -S -u vagrant -i /bin/bash -l -c 'cd /vagrant/rails/rails-devise/; rake db:migrate'
 
     sudo -S -u vagrant -i /bin/bash -l -c 'cd /vagrant/rails/rails-devise/; rails s -d'
